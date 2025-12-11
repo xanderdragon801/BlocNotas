@@ -274,7 +274,7 @@ npx expo start --clear
 * **Empty State**: Mensaje cuando no hay notas
 * **Diseño**: Interfaz limpia con tarjetas estilizadas
 
-![Pantalla Principal](docs/PantallaPrincipal.jpg)
+<img src="docs/PantallaPrincipal.jpg" width="50%">
 
 ### Pantalla de Edición (NoteEditorScreen):
 
@@ -286,7 +286,7 @@ npx expo start --clear
 * **Keyboard Avoidance**: El teclado no cubre los campos
 * **Navegación**: Botón de regreso para volver a la lista
 
-![Pantalla de Edición](docs/EditarNota.jpg)
+<img src="docs/EditarNota.jpg" width="50%">
 
 ### Crear una Nota
 
@@ -294,7 +294,7 @@ npx expo start --clear
 2. Ingresa un título y contenido
 3. Toca **"Guardar"**
 
-![Pantalla de Crear Nota](docs/CrearNota.jpg)
+<img src="docs/CrearNota.jpg" width="50%">
 
 ### Editar una Nota
 
@@ -302,7 +302,7 @@ npx expo start --clear
 2. Modifica el título o contenido
 3. Toca **"Guardar"**
 
-![Pantalla de Editar una Nota](docs/ActualizarunaNota.jpg)
+<img src="docs/ActualizarunaNota.jpg" width="50%">
 
 ### Eliminar una Nota
 
@@ -310,7 +310,7 @@ npx expo start --clear
 
 **Opción 2**: Abre la nota y toca el botón **"Eliminar"**
 
-![Pantalla de Eliminar Nota](docs/EliminarNota.jpg)
+<img src="docs/EliminarNota.jpg" width="50%">
 
 ### Actualizar la Lista
 
