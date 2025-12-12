@@ -1,10 +1,6 @@
 import axios from 'axios';
-import Constants from 'expo-constants';
 
-const BASE_URL =
-  Constants.expoConfig?.extra?.BACKEND_URL ||
-  Constants.easConfig?.extra?.BACKEND_URL ||
-  'http://localhost:4000';
+const BASE_URL = "https://backend-blocnotas-production.up.railway.app";
 
 export const api = axios.create({ baseURL: `${BASE_URL}/api` });
 
