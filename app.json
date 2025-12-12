@@ -1,12 +1,19 @@
 {
   "expo": {
-    "name": "notas",
-    "slug": "notas",
+    "name": "Bloc de Notas",
+    "slug": "bloc-notas",
     "version": "1.0.0",
     "orientation": "portrait",
-    "ios": { "supportsTablet": true },
-    "android": {},
-    "web": {},
-    "extra": { "BACKEND_URL": "http://192.168.18.194:4000" }
-  }
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.xanderdragon.blocnotas",
+      "versionCode":1
+}
+}
 }
