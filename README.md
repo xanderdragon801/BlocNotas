@@ -78,6 +78,10 @@ npx expo doctor
 | react-native-gesture-handler   | ~2.28.0  | Manejo de gestos táctiles                                          |
 | axios                          | ^1.13.1  | Cliente HTTP para comunicación con el backend API                   |
 | expo                           | ~54.0.22 | Framework de desarrollo móvil                                      |
+| expo-dev-client                | ~6.0.20  | Cliente de desarrollo de Expo                                      |
+| expo-haptics                   | ~15.0.8  | Feedback háptico en dispositivos                                   |
+| @expo/vector-icons             | ^15.0.3  | Iconos vectoriales para la aplicación                              |
+| react-native-toast-message     | ^2.3.3   | Notificaciones toast para mensajes                                |
 | react                          | 19.1.0   | Biblioteca de interfaz de usuario                                  |
 | react-native                   | 0.81.5   | Framework de desarrollo móvil multiplataforma                      |
 
@@ -86,6 +90,7 @@ npx expo doctor
 | Dependencia                    | Versión  | Propósito                                                          |
 | ------------------------------ | -------- | ------------------------------------------------------------------ |
 | @types/react                  | ~19.1.10 | Tipos TypeScript para React                                       |
+| @types/react-native           | ^0.73.0  | Tipos TypeScript para React Native                                |
 | babel-plugin-module-resolver   | ^5.0.2   | Resolución de módulos con alias (@/)                              |
 | typescript                     | ~5.9.2   | Soporte TypeScript                                                 |
 
@@ -105,18 +110,26 @@ notas/
 │   ├── adaptive-icon.png
 │   ├── favicon.png
 │   ├── icon.png
-│   └── splash-icon.png
+│   ├── nota.png
+│   └── splash.png
 ├── docs/                           # Documentación y capturas
-│   ├── CrearNota.jpg
-│   ├── EditarNota.jpg
-│   ├── EliminarNota.jpg
-│   └── ActualizarNota.jpg
+│   ├── PantallaInicio.jpg
+│   ├── PantallaEdición.jpg
+│   ├── CrearUnaNota.jpg
+│   ├── EditarUnaNota.jpg
+│   └── EliminarUnaNota.jpg
 └── src/
     ├── api/                        # Servicios de API
     │   └── client.js               # Cliente HTTP, configuración de backend y funciones de API
     ├── components/                 # Componentes reutilizables
     │   ├── NoteItem.js             # Componente de tarjeta de nota
-    │   └── EmptyState.js           # Componente de estado vacío
+    │   ├── EmptyState.js           # Componente de estado vacío
+    │   ├── FAB.js                  # Floating Action Button
+    │   ├── Button.js               # Botón reutilizable
+    │   ├── SearchBar.js            # Barra de búsqueda
+    │   └── AppHeader.js            # Encabezado de la aplicación
+    ├── ui/                         # Componentes de UI y temas
+    │   └── theme.js                # Configuración de tema y estilos
     ├── navigation/                 # Configuración de navegación
     │   └── index.js                # Stack Navigator
     └── screens/                    # Pantallas de la aplicación
@@ -276,7 +289,7 @@ npx expo start --clear
 * **Empty State**: Mensaje cuando no hay notas
 * **Diseño**: Interfaz limpia con tarjetas estilizadas
 
-<img src="docs/PantallaPrincipal.jpg" width="50%">
+<img src="docs/PantallaInicio.jpg" width="50%">
 
 ### Pantalla de Edición (NoteEditorScreen):
 
@@ -288,7 +301,7 @@ npx expo start --clear
 * **Keyboard Avoidance**: El teclado no cubre los campos
 * **Navegación**: Botón de regreso para volver a la lista
 
-<img src="docs/EditarNota.jpg" width="50%">
+<img src="docs/PantallaEdición.jpg" width="50%">
 
 ### Crear una Nota
 
@@ -296,7 +309,7 @@ npx expo start --clear
 2. Ingresa un título y contenido
 3. Toca **"Guardar"**
 
-<img src="docs/CrearNota.jpg" width="50%">
+<img src="docs/CrearUnaNota.jpg" width="50%">
 
 ### Editar una Nota
 
@@ -304,7 +317,7 @@ npx expo start --clear
 2. Modifica el título o contenido
 3. Toca **"Guardar"**
 
-<img src="docs/ActualizarunaNota.jpg" width="50%">
+<img src="docs/EditarUnaNota.jpg" width="50%">
 
 ### Eliminar una Nota
 
@@ -312,7 +325,7 @@ npx expo start --clear
 
 **Opción 2**: Abre la nota y toca el botón **"Eliminar"**
 
-<img src="docs/EliminarNota.jpg" width="50%">
+<img src="docs/EliminarUnaNota.jpg" width="50%">
 
 ### Actualizar la Lista
 
