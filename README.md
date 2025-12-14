@@ -113,7 +113,7 @@ notas/
 │   └── ActualizarNota.jpg
 └── src/
     ├── api/                        # Servicios de API
-    │   └── client.js               # Cliente HTTP y funciones de API
+    │   └── client.js               # Cliente HTTP, configuración de backend y funciones de API
     ├── components/                 # Componentes reutilizables
     │   ├── NoteItem.js             # Componente de tarjeta de nota
     │   └── EmptyState.js           # Componente de estado vacío
@@ -130,7 +130,7 @@ notas/
 * **navigation/index.js**: Configuración del Stack Navigator
 * **NotesListScreen.js**: Pantalla principal con lista de notas y FAB
 * **NoteEditorScreen.js**: Pantalla de edición/creación de notas individuales
-* **api/client.js**: Cliente HTTP con funciones para CRUD de notas
+* **api/client.js**: Cliente HTTP con funciones para CRUD de notas y configuración de la URL del backend
 
 ## 5. Instalación y Configuración
 
@@ -159,22 +159,24 @@ npm list --depth=0
 
 ### Configuración del Backend
 
-Edita el archivo `app.json` y actualiza la URL de tu backend en la sección `extra`:
+El backend está configurado directamente en el archivo `src/api/client.js` con la URL de producción en Railway:
 
-```json
-{
-  "expo": {
-    "extra": {
-      "BACKEND_URL": "http://tu-ip:4000"
-    }
-  }
-}
+```javascript
+const BASE_URL = "https://backend-blocnotas-production.up.railway.app";
 ```
 
-**Importante**: 
-- Reemplaza `tu-ip` con la IP local de tu máquina (ej: `192.168.1.100`)
-- Asegúrate de que el puerto coincida con el de tu backend (por defecto: 4000)
-- Tu dispositivo móvil y tu computadora deben estar en la misma red Wi-Fi
+**Para cambiar la URL del backend:**
+
+Edita el archivo `src/api/client.js` y actualiza la constante `BASE_URL`:
+
+```javascript
+const BASE_URL = "https://tu-backend-url.com";
+```
+
+**Nota**: 
+- La aplicación está configurada para usar el backend en producción en Railway
+- Para desarrollo local, puedes cambiar la URL a `http://tu-ip:4000` (reemplaza `tu-ip` con tu IP local)
+- Asegúrate de que el backend esté accesible desde tu dispositivo o emulador
 
 ### Estructura del Backend API
 
@@ -225,8 +227,8 @@ npx expo start --web
 npm install
 ```
 
-2. **Configurar backend:**  
-   Edita `app.json` con la URL de tu backend API
+2. **Configurar backend (opcional):**  
+   Si necesitas cambiar la URL del backend, edita `src/api/client.js` y actualiza la constante `BASE_URL`
 
 3. **Iniciar el servidor de desarrollo:**  
 ```bash
@@ -390,7 +392,7 @@ export const newApiFunction = async (params) => {
 | **Metro cache corrupto**         | `npx expo start --clear`                                       |
 | **Puerto ocupado**               | `npx expo start --port 8082`                                   |
 | **Dependencias desactualizadas** | `npx expo doctor`                                               |
-| **Backend no conecta**            | Verifica IP en `app.json`, confirma que backend esté activo   |
+| **Backend no conecta**            | Verifica URL en `src/api/client.js`, confirma que backend esté activo   |
 | **Error babel-plugin-module-resolver** | `npm install -D babel-plugin-module-resolver`                |
 
 ### Comandos Útiles:
@@ -412,10 +414,11 @@ netstat -ano | findstr :8081
 ### El servidor no se conecta al backend
 
 * Verifica que el backend esté ejecutándose
-* Confirma que la IP en `app.json` sea correcta
-* Asegúrate de que ambos dispositivos estén en la misma red Wi-Fi
-* Prueba con `http://localhost:4000` si estás usando un emulador
-* Verifica que el backend acepte conexiones desde tu IP local
+* Confirma que la URL en `src/api/client.js` sea correcta
+* Si usas desarrollo local, asegúrate de que ambos dispositivos estén en la misma red Wi-Fi
+* Para emulador Android, puedes usar `http://10.0.2.2:4000` (localhost del host)
+* Verifica que el backend acepte conexiones desde tu dispositivo/emulador
+* Si usas Railway o producción, verifica que el backend esté desplegado y accesible
 
 ### Errores de compilación
 
