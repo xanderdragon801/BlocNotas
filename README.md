@@ -20,7 +20,10 @@ Bloc de Notas es una aplicación móvil desarrollada con React Native y Expo que
 * **Navegación Intuitiva**: Navegación Stack entre lista y editor de notas
 * **Confirmación de Eliminación**: Diálogos de confirmación para evitar eliminaciones accidentales
 * **Empty State**: Mensaje informativo cuando no hay notas
-* **Keyboard Avoidance**: El teclado no cubre los campos de entrada
+* **Keyboard Avoidance**: El teclado no cubre los campos de entrada (usando KeyboardAwareScrollView)
+* **Notificaciones Toast**: Mensajes de éxito/error con react-native-toast-message
+* **Feedback Háptico**: Vibraciones táctiles para mejor UX (expo-haptics)
+* **Iconos Vectoriales**: Iconos consistentes con @expo/vector-icons
 * Diseño responsivo y optimizado para móviles
 * Estructura de código modular y escalable
 
@@ -76,6 +79,7 @@ npx expo doctor
 | react-native-screens           | ~4.16.0  | Optimización de rendimiento para transiciones nativas              |
 | react-native-safe-area-context| ~5.6.0   | Manejo de áreas seguras (notch, barras de estado)                  |
 | react-native-gesture-handler   | ~2.28.0  | Manejo de gestos táctiles                                          |
+| react-native-keyboard-aware-scroll-view | ^0.9.5 | Manejo inteligente del teclado en formularios                      |
 | axios                          | ^1.13.1  | Cliente HTTP para comunicación con el backend API                   |
 | expo                           | ~54.0.22 | Framework de desarrollo móvil                                      |
 | expo-dev-client                | ~6.0.20  | Cliente de desarrollo de Expo                                      |
@@ -189,7 +193,14 @@ const BASE_URL = "https://tu-backend-url.com";
 **Nota**: 
 - La aplicación está configurada para usar el backend en producción en Railway
 - Para desarrollo local, puedes cambiar la URL a `http://tu-ip:4000` (reemplaza `tu-ip` con tu IP local)
+- Para emulador Android, usa `http://10.0.2.2:4000` (mapeo especial de localhost)
 - Asegúrate de que el backend esté accesible desde tu dispositivo o emulador
+- El backend debe tener CORS configurado para permitir peticiones desde la app móvil
+
+**Información del Package:**
+- **Android Package Name:** `com.xanderdragon.blocnotas`
+- **Versión:** 1.0.0 (versionCode: 1)
+- **EAS Project ID:** `fb3b2460-4f0b-4b84-bfe3-850e7ef6ed6c`
 
 ### Estructura del Backend API
 
@@ -227,6 +238,11 @@ npm run android
 # o
 npx expo start --android
 
+# Ejecutar en iOS (simulador/dispositivo)
+npm run ios
+# o
+npx expo start --ios
+
 # Ejecutar en web
 npm run web
 # o
@@ -249,9 +265,9 @@ npm start
 ```
 
 4. **Conectar dispositivo:**  
-   * **Android:** Usar Expo Go o emulador  
-   * **iOS:** Usar Expo Go o simulador  
-   * **Web:** Se abrirá automáticamente en el navegador
+   * **Android:** Usar Expo Go o emulador (requiere `npm run android` para build nativo)
+   * **iOS:** Usar Expo Go o simulador (requiere `npm run ios` para build nativo)
+   * **Web:** Se abrirá automáticamente en el navegador con `npm run web`
 
 ### Modo Túnel (para desarrollo remoto)
 
@@ -335,10 +351,12 @@ Desliza hacia abajo en la lista para refrescar las notas desde el servidor.
 
 * **Navegación Stack**: Transiciones suaves entre pantallas
 * **Diseño Responsivo**: Optimizado para diferentes tamaños de pantalla
-* **Gestión de Estado**: Estado local con React Hooks
-* **Manejo de Errores**: Alertas informativas para errores de API
+* **Gestión de Estado**: Estado local con React Hooks (useState, useCallback, useEffect)
+* **Manejo de Errores**: Alertas informativas y notificaciones toast para errores de API
 * **Componentes Modulares**: Código organizado y reutilizable
-* **Refresh Control**: Actualización manual de la lista
+* **Refresh Control**: Actualización manual de la lista con pull-to-refresh
+* **Navegación con Parámetros**: Paso de datos entre pantallas mediante route params
+* **Auto-refresh**: Recarga automática de notas al volver a la pantalla principal
 
 ## 8. Desarrollo y Extensión
 
@@ -457,6 +475,8 @@ npx expo start --port 8082
 * [React Native Docs](https://reactnative.dev/)
 * [Axios Documentation](https://axios-http.com/docs/intro)
 * [Expo Components](https://docs.expo.dev/ui-programming/)
+* [EAS Build](https://docs.expo.dev/build/introduction/)
+* [React Native Toast Message](https://github.com/calintamas/react-native-toast-message)
 
 ---
 
